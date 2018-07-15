@@ -25,7 +25,7 @@ const VuexConfig = {
     },
     mutations:{
         addCart(state,id){
-
+            console.log(id)
         },
         setProductList(state,data){
             state.productList = data

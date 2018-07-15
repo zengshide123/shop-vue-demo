@@ -12,6 +12,13 @@ const Routers=[
         component: (resolve) => require(['@/views/List.vue'], resolve)
     },
     {
+        path:'/product/:id',
+        meta:{
+            title:'商品详情'
+        },
+        component:(resolve) => require(['@/views/Detail.vue'],resolve)
+    },
+    {
         path:'*',
         redirect:'/list'
     }
