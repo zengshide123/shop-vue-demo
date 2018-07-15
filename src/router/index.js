@@ -1,15 +1,32 @@
 import Vue from 'vue'
-import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import VueRouter from 'vue-router'
 
-Vue.use(Router)
+Vue.use(VueRouter);
 
-export default new Router({
-  routes: [
+const Routers=[
     {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+        path:'/list',
+        meta:{
+            title:'商品列表'
+        },
+        component: (resolve) => require(['@/views/List.vue'], resolve)
+    },
+    {
+        path:'*',
+        redirect:'/list'
     }
-  ]
+]
+const RouterConfig = {
+    mode:'history',
+    routes:Routers
+}
+const router = new VueRouter(RouterConfig)
+
+router.beforeEach((to,from,next)=>{
+    window.document.title = to.meta.title;
+    next()
 })
+router.afterEach((to,from,next)=>{
+    window.scrollTo(0,0)
+})
+export default router
