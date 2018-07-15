@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import product_data from '@/mock/product.js'
+import getFilterArray from '@/utils'
 
 Vue.use(Vuex);
 
-// console.log(product_data)
 
 const VuexConfig = {
     state:{
@@ -13,7 +13,16 @@ const VuexConfig = {
         // 购物车数据列表
         cartList:[]
     },
-    getters:{},
+    getters:{
+        brands:state=>{
+            const brands = state.productList.map(item=>item.brand)
+            return getFilterArray(brands)
+        },
+        colors:state=>{
+            const colors = state.productList.map(item=>item.color)
+            return getFilterArray(colors)
+        }
+    },
     mutations:{
         addCart(state,id){
 
